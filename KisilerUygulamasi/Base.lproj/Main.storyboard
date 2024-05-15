@@ -38,12 +38,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Kişi Ad" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NyU-gh-gMn">
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Kişi Ad" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NyU-gh-gMn">
                                 <rect key="frame" x="50" y="202.5" width="314" height="45.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Kişi Ad" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oG2-QS-VvI">
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Kişi Tel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oG2-QS-VvI">
                                 <rect key="frame" x="50" y="298" width="314" height="45.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -54,6 +54,9 @@
                                 <buttonConfiguration key="configuration" style="plain" title="Kaydet">
                                     <fontDescription key="titleFontDescription" name="Helvetica" family="Helvetica" pointSize="30"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="vuttonKaydet:" destination="3zj-S2-9gQ" eventType="touchUpInside" id="lRR-XC-nC0"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="pfO-9O-Ckz"/>
@@ -71,6 +74,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Kişi Kayıt" id="1cC-uM-R12"/>
+                    <connections>
+                        <outlet property="tfKisiAd" destination="NyU-gh-gMn" id="aCq-jA-XMa"/>
+                        <outlet property="tfKisiTel" destination="oG2-QS-VvI" id="ONl-tC-ANv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vJ6-dq-rp8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -83,8 +90,42 @@
                     <view key="view" contentMode="scaleToFill" id="DVp-x5-zJd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Kişi Ad" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BLT-Jg-PCh">
+                                <rect key="frame" x="50" y="98" width="314" height="45.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Kişi Tel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rgz-Oi-cmj">
+                                <rect key="frame" x="50" y="193.5" width="314" height="45.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NoV-Lz-jA6">
+                                <rect key="frame" x="136" y="289" width="142.5" height="49"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Güncelle">
+                                    <fontDescription key="titleFontDescription" name="Helvetica" family="Helvetica" pointSize="30"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="vuttonKaydet:" destination="3zj-S2-9gQ" eventType="touchUpInside" id="QIX-RA-gUX"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="e2p-Hg-uBW"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="NoV-Lz-jA6" firstAttribute="top" secondItem="Rgz-Oi-cmj" secondAttribute="bottom" constant="50" id="1vA-ga-om3"/>
+                            <constraint firstItem="Rgz-Oi-cmj" firstAttribute="top" secondItem="BLT-Jg-PCh" secondAttribute="bottom" constant="50" id="6x0-ey-2w8"/>
+                            <constraint firstItem="Rgz-Oi-cmj" firstAttribute="leading" secondItem="e2p-Hg-uBW" secondAttribute="leading" constant="50" id="EKP-0H-5RC"/>
+                            <constraint firstItem="Rgz-Oi-cmj" firstAttribute="top" secondItem="BLT-Jg-PCh" secondAttribute="bottom" constant="50" id="EpW-cA-fPF"/>
+                            <constraint firstItem="BLT-Jg-PCh" firstAttribute="top" secondItem="e2p-Hg-uBW" secondAttribute="top" constant="50" id="STC-w3-p5p"/>
+                            <constraint firstItem="NoV-Lz-jA6" firstAttribute="centerX" secondItem="DVp-x5-zJd" secondAttribute="centerX" id="Zt5-t6-ck8"/>
+                            <constraint firstItem="NoV-Lz-jA6" firstAttribute="top" secondItem="Rgz-Oi-cmj" secondAttribute="bottom" constant="50" id="fFv-jg-7sk"/>
+                            <constraint firstItem="e2p-Hg-uBW" firstAttribute="trailing" secondItem="BLT-Jg-PCh" secondAttribute="trailing" constant="50" id="qhQ-QZ-137"/>
+                            <constraint firstItem="BLT-Jg-PCh" firstAttribute="leading" secondItem="e2p-Hg-uBW" secondAttribute="leading" constant="50" id="rAh-u1-02m"/>
+                            <constraint firstItem="e2p-Hg-uBW" firstAttribute="trailing" secondItem="Rgz-Oi-cmj" secondAttribute="trailing" constant="50" id="yTp-Vf-zvY"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ch2-X3-d5v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

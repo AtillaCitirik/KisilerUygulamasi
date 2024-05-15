@@ -9,21 +9,25 @@ import UIKit
 
 class KisiKayit: UIViewController {
 
+    @IBOutlet weak var tfKisiAd: UITextField!
+    @IBOutlet weak var tfKisiTel: UITextField!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func vuttonKaydet(_ sender: Any) {
+        if let ka = tfKisiAd.text, let kt = tfKisiTel.text {
+            kaydet(kisi_ad: ka, kisi_tel: kt)
+        }
     }
-    */
+    
+    func kaydet(kisi_ad:String, kisi_tel:String){
+        print("Kişi Kaydet: \(kisi_ad) - \(kisi_tel)")
+    }
+    
 
 }
