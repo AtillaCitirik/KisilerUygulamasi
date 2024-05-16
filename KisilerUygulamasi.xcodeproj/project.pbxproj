@@ -16,6 +16,7 @@
 		452A7E8A2BECFDF50094A8C6 /* KisiKayit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452A7E892BECFDF50094A8C6 /* KisiKayit.swift */; };
 		452A7E8C2BECFE000094A8C6 /* KisiDetay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452A7E8B2BECFE000094A8C6 /* KisiDetay.swift */; };
 		452A7E8E2BECFE3B0094A8C6 /* Kisiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452A7E8D2BECFE3B0094A8C6 /* Kisiler.swift */; };
+		452A7E912BF6199E0094A8C6 /* KisilerHucreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452A7E902BF6199E0094A8C6 /* KisilerHucreTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		452A7E892BECFDF50094A8C6 /* KisiKayit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KisiKayit.swift; sourceTree = "<group>"; };
 		452A7E8B2BECFE000094A8C6 /* KisiDetay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KisiDetay.swift; sourceTree = "<group>"; };
 		452A7E8D2BECFE3B0094A8C6 /* Kisiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kisiler.swift; sourceTree = "<group>"; };
+		452A7E902BF6199E0094A8C6 /* KisilerHucreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KisilerHucreTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 		452A7E852BECFDB20094A8C6 /* ui */ = {
 			isa = PBXGroup;
 			children = (
+				452A7E8F2BF619860094A8C6 /* tableView */,
 				452A7E882BECFDD90094A8C6 /* views */,
 			);
 			path = ui;
@@ -106,6 +109,14 @@
 				452A7E8B2BECFE000094A8C6 /* KisiDetay.swift */,
 			);
 			path = views;
+			sourceTree = "<group>";
+		};
+		452A7E8F2BF619860094A8C6 /* tableView */ = {
+			isa = PBXGroup;
+			children = (
+				452A7E902BF6199E0094A8C6 /* KisilerHucreTableViewCell.swift */,
+			);
+			path = tableView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -184,6 +195,7 @@
 				452A7E752BECFD660094A8C6 /* Anasayfa.swift in Sources */,
 				452A7E712BECFD660094A8C6 /* AppDelegate.swift in Sources */,
 				452A7E732BECFD660094A8C6 /* SceneDelegate.swift in Sources */,
+				452A7E912BF6199E0094A8C6 /* KisilerHucreTableViewCell.swift in Sources */,
 				452A7E8E2BECFE3B0094A8C6 /* Kisiler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
