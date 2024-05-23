@@ -13,6 +13,8 @@ class Anasayfa: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     var kisilerListesi = [Kisiler]()
     
+    var viewModel = AnasayfaViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -20,16 +22,15 @@ class Anasayfa: UIViewController {
         kisilerTableView.delegate = self
         kisilerTableView.dataSource = self
         
-        let k1 = Kisiler(kisi_id: 1, kisi_ad: "Ahmet", kisi_tel: "1111")
-        let k2 = Kisiler(kisi_id: 2, kisi_ad: "Beyza", kisi_tel: "2222")
-        let k3 = Kisiler(kisi_id: 3, kisi_ad: "Zeynep", kisi_tel: "3333")
-        kisilerListesi.append(k1)
-        kisilerListesi.append(k2)
-        kisilerListesi.append(k3)
+        _ = viewModel.kisilerListesi.subscribe(onNext: { liste in
+            self.kisilerListesi = liste
+            self.kisilerTableView.reloadData()
+        })
+       
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("Anasayfaya dönüldü")
+        self.viewModel.kisileriYukle()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -45,7 +46,7 @@ class Anasayfa: UIViewController {
 
 extension Anasayfa: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print("Trst")
+        viewModel.ara(aramaKelimesi: searchText)
     }
 }
 
@@ -80,7 +81,7 @@ extension Anasayfa: UITableViewDelegate, UITableViewDataSource {
             alert.addAction(iptalAction)
             
             let evetAction = UIAlertAction(title: "Evet", style: .destructive) { action in
-                    print("kişi silindi")
+                self.viewModel.sil(kisi_id: kisi.kisi_id!)
             }
             alert.addAction(evetAction)
 
