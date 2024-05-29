@@ -12,8 +12,26 @@ class KisilerdaoRepository {
     
     var kisilerListesi = BehaviorSubject<[Kisiler]>(value: [Kisiler]())
     
+    let db:FMDatabase?
+    
+    init(){
+        let hedefYol = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
+        let veritabaniURL = URL(fileURLWithPath: hedefYol).appendingPathComponent("rehber.sqlite")
+        db = FMDatabase(path: veritabaniURL.path)
+    }
+    
     func kaydet(kisi_ad:String, kisi_tel:String){
-        print("Kişi Kaydet: \(kisi_ad) - \(kisi_tel)")
+        
+        db?.open()
+
+        do {
+            try db!.executeUpdate("INSERT INTO kisiler(kisi_ad, kisi_tel) values(?,?)", values: [kisi_ad,kisi_tel])
+        }catch{
+            print(error.localizedDescription)
+        }
+  
+        db?.close()
+        
     }
     
     func guncelle(kisi_id:Int, kisi_ad:String, kisi_tel:String) {
@@ -30,14 +48,32 @@ class KisilerdaoRepository {
     }
     
     func kisileriYukle(){
+       
+        
+        
+        db?.open()
         var liste = [Kisiler]()
-        let k1 = Kisiler(kisi_id: 1, kisi_ad: "Ahmet", kisi_tel: "1111")
-        let k2 = Kisiler(kisi_id: 2, kisi_ad: "Beyza", kisi_tel: "2222")
-        let k3 = Kisiler(kisi_id: 3, kisi_ad: "Zeynep", kisi_tel: "3333")
-        liste.append(k1)
-        liste.append(k2)
-        liste.append(k3)
-        kisilerListesi.onNext(liste)
+        
+        do {
+            let rs = try db!.executeQuery("SELECT * FROM Kisiler", values: nil)
+            
+            while rs.next() {
+                let kisi = Kisiler(kisi_id: Int(rs.string(forColumn: "kisi_id"))!,
+                                   kisi_ad: rs.string(forColumn: "kisi_ad") ?? "İsim boş",
+                                   kisi_tel: rs.string(forColumn: "kisi_tel") ?? "0000"
+                )
+                liste.append(kisi)
+            }
+            
+            kisilerListesi.onNext(liste)
+            
+        }catch{
+            print(error.localizedDescription)
+        }
+        
+        
+        
+        db?.close()
     }
     
     

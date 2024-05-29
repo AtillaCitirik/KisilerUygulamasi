@@ -13,6 +13,7 @@ class AnasayfaViewModel{
     var krepo = KisilerdaoRepository()
     
     init(){
+        veritabaniKopyala()
         kisilerListesi = krepo.kisilerListesi
         kisileriYukle()
     }
@@ -27,6 +28,22 @@ class AnasayfaViewModel{
     
     func kisileriYukle(){
         krepo.kisileriYukle()
+    }
+    
+    func veritabaniKopyala(){
+        let bundleYolu = Bundle.main.path(forResource: "rehber", ofType: ".sqlite")
+        let hedefYol = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
+        let kopyalanacakYer = URL(fileURLWithPath: hedefYol).appendingPathComponent("rehber.sqlite")
+        let fileManager = FileManager.default
+        if fileManager.fileExists(atPath: kopyalanacakYer.path){
+            print("Veritabanı zaten var")
+        } else {
+            do {
+                try fileManager.copyItem(atPath: bundleYolu!, toPath: kopyalanacakYer.path)
+            }catch {
+                
+            }
+        }
     }
     
 }
