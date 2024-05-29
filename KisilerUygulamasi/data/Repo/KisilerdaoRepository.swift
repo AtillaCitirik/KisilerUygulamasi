@@ -48,18 +48,46 @@ class KisilerdaoRepository {
     }
     
     func sil(kisi_id:Int){
-        print("kişi sil: \(kisi_id)")
-        kisileriYukle()
+        
+        db?.open()
+
+        do {
+            try db!.executeUpdate("DELETE FROM kisiler WHERE kisi_id = ?", values: [kisi_id])
+            kisileriYukle()
+        }catch{
+            print(error.localizedDescription)
+        }
+  
+        db?.close()
+        
+       
     }
     
     func ara (aramaKelimesi:String) {
-        print("Kişi ara: \(aramaKelimesi)")
+        db?.open()
+        var liste = [Kisiler]()
+        
+        do {
+            let rs = try db!.executeQuery("SELECT * FROM Kisiler WHERE kisi_ad LIKE '%\(aramaKelimesi)%'", values: nil)
+            
+            while rs.next() {
+                let kisi = Kisiler(kisi_id: Int(rs.string(forColumn: "kisi_id"))!,
+                                   kisi_ad: rs.string(forColumn: "kisi_ad") ?? "İsim boş",
+                                   kisi_tel: rs.string(forColumn: "kisi_tel") ?? "0000"
+                )
+                liste.append(kisi)
+            }
+            
+            kisilerListesi.onNext(liste)
+            
+        }catch{
+            print(error.localizedDescription)
+        }
+        db?.close()
     }
     
     func kisileriYukle(){
-       
-        
-        
+
         db?.open()
         var liste = [Kisiler]()
         
@@ -79,9 +107,6 @@ class KisilerdaoRepository {
         }catch{
             print(error.localizedDescription)
         }
-        
-        
-        
         db?.close()
     }
     
